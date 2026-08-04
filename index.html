@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schedule — Shanti Island</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12352A;
+  --ink-soft:#3D5A4B;
+  --muted:#7A8C7C;
+  --header:#0E2C20;
+  --sand:#EFE1C4;
+  --card:#F5EDD8;
+  --row:#EAE0C5;
+  --row-hover:#E2D6B4;
+  --line:#D8CBA9;
+  --gold:#F2D34E;
+  --gold-deep:#C9A417;
+  --sprout:#86D36A;
+  --lock:#A9AE9B;
+  --white:#FFFDF7;
+  --r-lg:20px;
+  --r-md:12px;
+  --r-sm:9px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+  background:var(--sand);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ---------- header ---------- */
+.nav{
+  background:var(--header);
+  padding:18px 34px;
+  display:flex;align-items:center;gap:40px;
+  position:sticky;top:0;z-index:50;
+}
+.logo{display:flex;align-items:center;gap:11px;color:var(--white);flex-shrink:0}
+.logo svg{width:34px;height:34px}
+.logo-text{font-weight:700;font-size:19px;line-height:1.02;letter-spacing:-.2px}
+.nav-links{display:flex;gap:34px;margin:0 auto;font-weight:700;font-size:16px}
+.nav-links a{color:#CFE0D2;padding:5px 2px;transition:color .18s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--sprout)}
+.nav-right{display:flex;align-items:center;gap:16px;color:#CFE0D2;flex-shrink:0}
+.user{display:flex;align-items:center;gap:10px;font-weight:500;font-size:15px}
+.avatar{width:29px;height:29px;border-radius:50%;background:#2A4B3B;display:grid;place-items:center}
+.bell{position:relative}
+.bell .dot{position:absolute;top:0;right:1px;width:7px;height:7px;border-radius:50%;background:#E4574C;border:1.5px solid var(--header)}
+
+/* ---------- page head ---------- */
+.wrap{max-width:1560px;margin:0 auto;padding:0 34px}
+.page-head{padding:38px 0 26px}
+h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
+.page-head p{margin-top:12px;font-size:19px;font-weight:500;color:var(--ink-soft);max-width:760px}
+
+/* ---------- schedule shell ---------- */
+.board{
+  background:var(--card);
+  border-radius:var(--r-lg);
+  padding:30px 28px 26px;
+  border:1px solid var(--line);
+  margin-bottom:46px;
+}
+.board-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.board-head h2{font-size:29px;font-weight:700;letter-spacing:-.5px}
+.board-head .sub{margin-top:6px;font-size:15px;color:var(--ink-soft);font-weight:500}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);font-weight:500}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend .k{width:15px;height:15px;display:grid;place-items:center;flex-shrink:0}
+
+/* ---------- module strip ---------- */
+.strip{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:minmax(392px,1fr);
+  gap:18px;
+  overflow-x:auto;
+  padding-bottom:14px;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:thin;
+  scrollbar-color:var(--line) transparent;
+}
+.strip::-webkit-scrollbar{height:8px}
+.strip::-webkit-scrollbar-track{background:transparent}
+.strip::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+
+.mod{
+  background:#F1E7CE;
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  padding:22px 20px 20px;
+  scroll-snap-align:start;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.mod.is-current{
+  background:#F8F2E0;
+  border-color:var(--gold-deep);
+  box-shadow:0 0 0 2px rgba(201,164,23,.35), 0 6px 20px -8px rgba(201,164,23,.45);
+  position:relative;
+}
+.mod.is-current::before{
+  content:'';position:absolute;left:-1px;right:-1px;top:-1px;height:4px;
+  border-radius:var(--r-md) var(--r-md) 0 0;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold));
+}
+.mod.is-intro{background:#EDE6D2;border-style:dashed}
+
+.mod-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:11px}
+.month{font-size:14px;font-weight:500;color:var(--muted)}
+.badge{
+  font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:6px 12px;border-radius:99px;background:#CFD2C7;color:#4A5348;white-space:nowrap;
+}
+.badge.on{background:var(--gold);color:#4A3B00}
+.badge.done{background:#BFD9B3;color:#2C4423}
+
+.mod h3{font-size:21px;font-weight:700;letter-spacing:-.35px;line-height:1.22}
+.mod-desc{margin-top:9px;font-size:14.5px;line-height:1.5;color:var(--ink-soft);font-weight:500}
+.mod-meta{
+  margin-top:13px;display:flex;gap:7px;flex-wrap:wrap;
+  font-size:12px;font-weight:500;color:var(--muted);
+}
+.mod-meta i{font-style:normal}
+.mod-meta i::after{content:'·';margin-left:7px}
+.mod-meta i:last-child::after{content:''}
+
+/* ---------- section label inside module ---------- */
+.sec-label{
+  display:flex;align-items:center;gap:10px;
+  margin:20px 0 10px;
+  font-size:11.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--line)}
+
+/* ---------- days: the path ---------- */
+.days{position:relative;display:flex;flex-direction:column;gap:5px}
+.days::before{
+  content:'';position:absolute;left:15px;top:16px;bottom:16px;
+  width:2px;background:var(--line);border-radius:2px;
+}
+.mod.is-current .days::before{
+  background:linear-gradient(to bottom,var(--ink) 0%,var(--ink) 40%,var(--gold-deep) 40%,var(--line) 42%,var(--line) 100%);
+}
+
+.day{
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:11px;
+  background:var(--row);
+  border:1px solid transparent;
+  border-radius:var(--r-sm);
+  padding:11px 13px;
+  text-align:left;width:100%;
+  transition:background .16s,border-color .16s,transform .16s;
+}
+.day:hover{background:var(--row-hover)}
+.day:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.day .mark{width:19px;height:19px;flex-shrink:0;display:grid;place-items:center}
+.day .n{
+  font-size:12px;font-weight:700;color:var(--muted);
+  min-width:19px;flex-shrink:0;letter-spacing:.2px;
+}
+.day .t{
+  font-size:14.5px;font-weight:500;line-height:1.3;flex:1;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.day .go{flex-shrink:0;color:var(--muted);display:grid;place-items:center;transition:transform .16s}
+.day:hover .go{transform:translateX(2px)}
+
+.day.done .t{color:var(--ink-soft)}
+.day.done .n{color:#9DA894}
+
+.day.now{
+  background:var(--white);
+  border-color:var(--gold-deep);
+  box-shadow:0 2px 0 rgba(201,164,23,.18);
+}
+.day.now .t{font-weight:700}
+.day.now .n{color:var(--gold-deep)}
+
+.day.locked{background:transparent;cursor:default}
+.day.locked:hover{background:transparent}
+.day.locked .t{color:var(--muted)}
+.day.locked .go{opacity:.35}
+
+.pulse{width:11px;height:11px;border-radius:50%;background:var(--gold-deep);position:relative}
+.pulse::after{
+  content:'';position:absolute;inset:-5px;border-radius:50%;
+  border:2px solid var(--gold-deep);opacity:.45;
+  animation:ring 2.4s ease-out infinite;
+}
+@keyframes ring{
+  0%{transform:scale(.62);opacity:.55}
+  70%{transform:scale(1.25);opacity:0}
+  100%{opacity:0}
+}
+
+/* ---------- live sessions ---------- */
+.lives{display:flex;flex-direction:column;gap:5px}
+.live{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 13px 10px 11px;
+  border-radius:var(--r-sm);
+  border:1px dashed var(--line);
+  background:rgba(255,253,247,.42);
+}
+.live .type{
+  width:4px;align-self:stretch;border-radius:99px;background:var(--muted);flex-shrink:0;
+}
+.live.practice .type{background:#B0453C}
+.live.qa .type{background:#4F7A9B}
+.live.circle .type{background:#B08343}
+.live-body{flex:1;min-width:0}
+.live-name{font-size:14px;font-weight:700;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.live-meta{margin-top:3px;font-size:12.5px;color:var(--muted);font-weight:500}
+.live-when{
+  font-size:12px;font-weight:700;color:var(--ink-soft);
+  text-align:right;flex-shrink:0;line-height:1.3;
+}
+.live-when em{display:block;font-style:normal;font-weight:500;color:var(--muted);font-size:11.5px}
+
+.join{
+  font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;
+  background:var(--ink);color:var(--white);flex-shrink:0;transition:opacity .16s;
+}
+.join:hover{opacity:.86}
+
+/* ---------- nav arrows ---------- */
+.board-foot{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:20px}
+.arrows{display:flex;gap:10px}
+.arrow{
+  width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid var(--line);transition:background .16s,border-color .16s;
+}
+.arrow:hover{background:var(--row-hover);border-color:var(--muted)}
+.arrow:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.dots{display:flex;gap:7px;align-items:center}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);display:block}
+.dots i.on{width:30px;border-radius:99px;background:var(--ink)}
+
+@media (max-width:900px){
+  .wrap{padding:0 18px}
+  .nav{padding:14px 18px;gap:18px}
+  .nav-links{gap:20px;font-size:15px}
+  .user span{display:none}
+  h1{font-size:31px}
+  .page-head p{font-size:16.5px}
+  .board{padding:22px 16px}
+  .strip{grid-auto-columns:minmax(290px,88vw)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">
+    <svg viewBox="0 0 40 40" fill="currentColor" aria-hidden="true">
+      <circle cx="20" cy="20" r="4.4"/>
+      <g>
+        <ellipse cx="20" cy="9.6" rx="3.1" ry="7"/>
+        <ellipse cx="20" cy="30.4" rx="3.1" ry="7"/>
+        <ellipse cx="9.6" cy="20" rx="7" ry="3.1"/>
+        <ellipse cx="30.4" cy="20" rx="7" ry="3.1"/>
+        <ellipse cx="12.6" cy="12.6" rx="3.1" ry="7" transform="rotate(-45 12.6 12.6)"/>
+        <ellipse cx="27.4" cy="27.4" rx="3.1" ry="7" transform="rotate(-45 27.4 27.4)"/>
+        <ellipse cx="27.4" cy="12.6" rx="7" ry="3.1" transform="rotate(-45 27.4 12.6)"/>
+        <ellipse cx="12.6" cy="27.4" rx="7" ry="3.1" transform="rotate(-45 12.6 27.4)"/>
+      </g>
+    </svg>
+    <div class="logo-text">Shanti<br>Island</div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Dashboard</a>
+    <a href="#" class="active" aria-current="page">Schedule</a>
+  </div>
+  <div class="nav-right">
+    <div class="user">
+      <span>nishchuk</span>
+      <div class="avatar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#CFE0D2" stroke-width="2.2" stroke-linecap="round">
+          <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="bell">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>
+      </svg>
+      <span class="dot"></span>
+    </div>
+    <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c0-3.6 2.9-5.8 6.5-5.8s6.5 2.2 6.5 5.8"/><path d="M17 5.2a3.4 3.4 0 0 1 0 5.6M18.5 14.6c2 .8 3 2.6 3 5.4"/>
+    </svg>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <h1>Your path through Shanti Island</h1>
+    <p>A guided learning path through movement, philosophy, embodiment, and live practice.</p>
+  </div>
+
+  <!-- ============ SCHEDULE ============ -->
+  <section class="board">
+    <div class="board-head">
+      <div>
+        <h2>Schedule</h2>
+        <div class="sub">6 study days per module · homework · live sessions</div>
+      </div>
+      <div class="legend">
+        <span><span class="k"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A7A45" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="9.5" stroke="#4A7A45" stroke-width="1.8"/><path d="M7.6 12.4l3 3 5.8-6.4"/></svg></span>Complete</span>
+        <span><span class="k"><span class="pulse" style="width:10px;height:10px"></span></span>Today</span>
+        <span><span class="k"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A9AE9B" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span>Opens later</span>
+      </div>
+    </div>
+
+    <div class="strip">
+
+      <!-- ---------- INTRO ---------- -->
+      <article class="mod is-intro">
+        <div class="mod-top">
+          <span class="month">Before you begin</span>
+          <span class="badge done">Complete</span>
+        </div>
+        <h3>Intro Week</h3>
+        <p class="mod-desc">Your ground is prepared — how the course works, what you will need, and the first breath taken on purpose.</p>
+        <div class="mod-meta"><i>3 study days</i><i>1 live session</i><i>Quiz to unlock Module 1</i></div>
+
+
+        <div class="sec-label">Study days</div>
+        <div class="days">
+          <a class="day done" href="#">
+            <span class="mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#4A7A45" stroke-linecap="round"><circle cx="12" cy="12" r="9.5" stroke-width="1.8"/><path d="M7.6 12.4l3 3 5.8-6.4" stroke-width="2.6"/></svg></span>
+            <span class="n">1</span><span class="t">How This Course Works</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="day done" href="#">
+            <span class="mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#4A7A45" stroke-linecap="round"><circle cx="12" cy="12" r="9.5" stroke-width="1.8"/><path d="M7.6 12.4l3 3 5.8-6.4" stroke-width="2.6"/></svg></span>
+            <span class="n">2</span><span class="t">Setting Up Your Practice Space</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="day done" href="#">
+            <span class="mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#4A7A45" stroke-linecap="round"><circle cx="12" cy="12" r="9.5" stroke-width="1.8"/><path d="M7.6 12.4l3 3 5.8-6.4" stroke-width="2.6"/></svg></span>
+            <span class="n">3</span><span class="t">Your First Conscious Breath</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+
+        <div class="sec-label">Live sessions</div>
+        <div class="lives">
+          <div class="live circle">
+            <span class="type"></span>
+            <div class="live-body">
+              <div class="live-name">Opening Ceremony</div>
+              <div class="live-meta">Meet your trainers and the group · 90 min</div>
+            </div>
+            <div class="live-when">Mon 4 Aug<em>17:00 WITA</em></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MODULE 1 ---------- -->
+      <article class="mod is-current">
+        <div class="mod-top">
+          <span class="month">Month 1</span>
+          <span class="badge on">On the path</span>
+        </div>
+        <h3>Module 1: Teacher's Awakening</h3>
+        <p class="mod-desc">Your foundations are set — conscious breath, grounded movement, and a clear sense of why you're here.</p>
+        <div class="mod-meta"><i>26 hrs</i><i>30 lessons</i><i>5 study days</i><i>1 live session</i></div>
+
+
+        <div class="sec-label">Study days</div>
+        <div class="days">
+          <a class="day done" href="#">
+            <span class="mark"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#4A7A45" stroke-linecap="round"><circle cx="12" cy="12" r="9.5" stroke-width="1.8"/><path d="M7.6 12.4l3 3 5.8-6.4" stroke-width="2.6"/></svg></span>
+            <span class="n">1</span><span class="t">Breath, Body &amp; Why We Practice</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="day now" href="#" aria-current="step">
+            <span class="mark"><span class="pulse"></span></span>
+            <span class="n">2</span><span class="t">Breath, Body &amp; The Teaching Foundation</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="day locked" href="#" aria-disabled="true">
+            <span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span>
+            <span class="n">3</span><span class="t">Alignment &amp; The Ashtanga Foundation</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="day locked" href="#" aria-disabled="true">
+            <span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span>
+            <span class="n">4</span><span class="t">Moving with Awareness &amp; Intention</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+          <a class="day locked" href="#" aria-disabled="true">
+            <span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span>
+            <span class="n">5</span><span class="t">Integration &amp; Inner Stability</span>
+            <span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+
+        <div class="sec-label">Live sessions</div>
+        <div class="lives">
+          <div class="live qa">
+            <span class="type"></span>
+            <div class="live-body">
+              <div class="live-name">Q&amp;A + Sharing Circle</div>
+              <div class="live-meta">Bring your questions from Module 1 · 2 hrs</div>
+            </div>
+            <div class="live-when">Fri 15 Aug<em>17:00 WITA</em></div>
+            <a class="join" href="#">Join</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MODULE 2 ---------- -->
+      <article class="mod">
+        <div class="mod-top">
+          <span class="month">Month 1</span>
+          <span class="badge">Opens 18 Aug</span>
+        </div>
+        <h3>Module 2: Deepening the Foundations</h3>
+        <p class="mod-desc">Your practice is deepening — breath with retention, hips open wide, and your first real students taught.</p>
+        <div class="mod-meta"><i>26 hrs</i><i>28 lessons</i><i>6 study days</i><i>3 live sessions</i></div>
+
+
+        <div class="sec-label">Study days</div>
+        <div class="days">
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">1</span><span class="t">Foundations of Breath &amp; Awareness</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">2</span><span class="t">Standing Strong, Breathing Deep</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">3</span><span class="t">Opening the Hips &amp; The Heart</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">4</span><span class="t">Core, Balance &amp; Inversion Basics</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">5</span><span class="t">Sequencing, Assisting &amp; Adjustments</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">6</span><span class="t">Teaching Your First Class</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        </div>
+
+        <div class="sec-label">Live sessions</div>
+        <div class="lives">
+          <div class="live practice">
+            <span class="type"></span>
+            <div class="live-body">
+              <div class="live-name">Live Practicum I — Sun Salutation Hatha</div>
+              <div class="live-meta">You teach, then receive feedback · 45 min</div>
+            </div>
+            <div class="live-when">Tue 26 Aug<em>16:00 WITA</em></div>
+          </div>
+          <div class="live practice">
+            <span class="type"></span>
+            <div class="live-body">
+              <div class="live-name">Live Practicum II — Sun Salutation A</div>
+              <div class="live-meta">Full forward fold sequence · 45 min</div>
+            </div>
+            <div class="live-when">Thu 28 Aug<em>16:00 WITA</em></div>
+          </div>
+          <div class="live qa">
+            <span class="type"></span>
+            <div class="live-body">
+              <div class="live-name">Q&amp;A + Sharing Circle</div>
+              <div class="live-meta">Bring your questions from Module 2 · 2 hrs</div>
+            </div>
+            <div class="live-when">Fri 29 Aug<em>17:00 WITA</em></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MODULE 3 ---------- -->
+      <article class="mod">
+        <div class="mod-top">
+          <span class="month">Month 2</span>
+          <span class="badge">Opens 1 Sep</span>
+        </div>
+        <h3>Module 3: Confidence in Practice and Voice</h3>
+        <p class="mod-desc">Your presence is found — a voice that carries, a confident backbend, and Half Primary in your hands.</p>
+        <div class="mod-meta"><i>27 hrs</i><i>28 lessons</i><i>6 study days</i><i>2 live sessions</i></div>
+
+
+        <div class="sec-label">Study days</div>
+        <div class="days">
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">1</span><span class="t">Finding Your Voice as a Teacher</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">2</span><span class="t">Backbends with Strength &amp; Grace</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">3</span><span class="t">Twists, Detox &amp; Subtle Body Awareness</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">4</span><span class="t">Half Primary Series — Part 1</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">5</span><span class="t">Half Primary Series — Part 2</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+          <a class="day locked" href="#" aria-disabled="true"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--lock)" stroke-width="2"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.4a4 4 0 0 1 8 0v3.1"/></svg></span><span class="n">6</span><span class="t">Confidence in Teaching &amp; Being</span><span class="go"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        </div>
+
+        <div class="sec-label">Live sessions</div>
+        <div class="lives">
+          <div class="live practice">
+            <span class="type"></span>
+            <div class="live-body">
+              <div class="live-name">Live Practicum — Teaching Peers</div>
+              <div class="live-meta">Ashtanga standing sequence · 1.5 hrs</div>
+            </div>
+            <div class="live-when">Wed 10 Sep<em>16:00 WITA</em></div>
+          </div>
+          <div class="live qa">
+            <span class="type"></span>
+            <div class="live-body">
+              <div class="live-name">Q&amp;A + Sharing Circle</div>
+              <div class="live-meta">Bring your questions from Module 3 · 2 hrs</div>
+            </div>
+            <div class="live-when">Fri 12 Sep<em>17:00 WITA</em></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="board-foot">
+      <div class="arrows">
+        <button class="arrow" aria-label="Previous modules" data-dir="-1">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="arrow" aria-label="Next modules" data-dir="1">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="dots"><i class="on"></i><i></i><i></i></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var strip=document.querySelector('.strip');
+  document.querySelectorAll('.arrow').forEach(function(b){
+    b.addEventListener('click',function(){
+      var card=strip.querySelector('.mod');
+      var step=card.getBoundingClientRect().width+18;
+      strip.scrollBy({left:step*parseInt(b.dataset.dir,10),behavior:'smooth'});
+    });
+  });
+  document.querySelectorAll('.day.locked').forEach(function(d){
+    d.addEventListener('click',function(e){e.preventDefault()});
+  });
+  var current=document.querySelector('.mod.is-current');
+  if(current&&strip){strip.scrollLeft=current.offsetLeft-strip.offsetLeft-8;}
+})();
+</script>
+
+</body>
+</html>
