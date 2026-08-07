@@ -146,15 +146,8 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
 }
 .sec-label::after{content:'';flex:1;height:1px;background:var(--line)}
 
-/* ---------- days: the path ---------- */
+/* ---------- days ---------- */
 .days{position:relative;display:flex;flex-direction:column;gap:5px}
-.days::before{
-  content:'';position:absolute;left:15px;top:16px;bottom:16px;
-  width:2px;background:var(--line);border-radius:2px;
-}
-.mod.is-current .days::before{
-  background:linear-gradient(to bottom,var(--ink) 0%,var(--ink) 40%,var(--gold-deep) 40%,var(--line) 42%,var(--line) 100%);
-}
 
 .day{
   position:relative;z-index:1;
