@@ -412,7 +412,7 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
 
         <div class="sec-label">Live sessions</div>
         <div class="lives">
-          <div class="live qa">
+          <div class="live qa" data-start="2026-08-15T17:00:00+08:00" data-duration="120">
             <span class="type"></span>
             <div class="live-body">
               <div class="live-name">Q&amp;A + Sharing Circle</div>
@@ -541,6 +541,17 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
   });
   var current=document.querySelector('.mod.is-current');
   if(current&&strip){strip.scrollLeft=current.offsetLeft-strip.offsetLeft-8;}
+
+  // The Join button only shows while a live session is actually happening.
+  // Outside that window the row looks the same, just without the button.
+  var now=new Date();
+  document.querySelectorAll('.live[data-start]').forEach(function(el){
+    var join=el.querySelector('.join');
+    if(!join) return;
+    var start=new Date(el.dataset.start);
+    var end=new Date(start.getTime()+Number(el.dataset.duration||60)*60000);
+    if(!(now>=start&&now<=end)) join.remove();
+  });
 })();
 </script>
 
