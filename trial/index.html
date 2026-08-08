@@ -146,15 +146,8 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
 }
 .sec-label::after{content:'';flex:1;height:1px;background:var(--line)}
 
-/* ---------- days: the path ---------- */
+/* ---------- days ---------- */
 .days{position:relative;display:flex;flex-direction:column;gap:5px}
-.days::before{
-  content:'';position:absolute;left:15px;top:16px;bottom:16px;
-  width:2px;background:var(--line);border-radius:2px;
-}
-.mod.is-current .days::before{
-  background:linear-gradient(to bottom,var(--ink) 0%,var(--ink) 40%,var(--gold-deep) 40%,var(--line) 42%,var(--line) 100%);
-}
 
 .day{
   position:relative;z-index:1;
@@ -323,7 +316,7 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
     <div class="board-head">
       <div>
         <h2>Schedule</h2>
-        <div class="sub">6 study days per module · homework · live sessions</div>
+        <div class="sub">6 study days per module · live sessions</div>
       </div>
       <div class="legend">
         <span><span class="k"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A7A45" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="9.5" stroke="#4A7A45" stroke-width="1.8"/><path d="M7.6 12.4l3 3 5.8-6.4"/></svg></span>Complete</span>
@@ -450,7 +443,7 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
 
         <div class="sec-label">Live sessions</div>
         <div class="lives">
-          <div class="live qa">
+          <div class="live qa" data-start="2026-08-15T17:00:00+08:00" data-duration="120">
             <span class="type"></span>
             <div class="live-body">
               <div class="live-name">Q&amp;A + Sharing Circle</div>
@@ -464,9 +457,8 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
 
       <!-- ---------- MODULE 2 ---------- -->
       <article class="mod">
-        <div class="mod-top">
-          <span class="month">Month 1</span>
-          <span class="badge">Opens 18 Aug</span>
+        <div class="mod-top" style="justify-content:flex-end">
+          <span class="badge">Awaiting</span>
         </div>
         <h3>Module 2: Deepening the Foundations</h3>
         <p class="mod-desc">Your practice is deepening — breath with retention, hips open wide, and your first real students taught.</p>
@@ -491,7 +483,6 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
               <div class="live-name">Live Practicum I — Sun Salutation Hatha</div>
               <div class="live-meta">You teach, then receive feedback · 45 min</div>
             </div>
-            <div class="live-when">Tue 26 Aug<em>16:00 WITA</em></div>
           </div>
           <div class="live practice">
             <span class="type"></span>
@@ -499,7 +490,6 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
               <div class="live-name">Live Practicum II — Sun Salutation A</div>
               <div class="live-meta">Full forward fold sequence · 45 min</div>
             </div>
-            <div class="live-when">Thu 28 Aug<em>16:00 WITA</em></div>
           </div>
           <div class="live qa">
             <span class="type"></span>
@@ -507,16 +497,14 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
               <div class="live-name">Q&amp;A + Sharing Circle</div>
               <div class="live-meta">Bring your questions from Module 2 · 2 hrs</div>
             </div>
-            <div class="live-when">Fri 29 Aug<em>17:00 WITA</em></div>
           </div>
         </div>
       </article>
 
       <!-- ---------- MODULE 3 ---------- -->
       <article class="mod">
-        <div class="mod-top">
-          <span class="month">Month 2</span>
-          <span class="badge">Opens 1 Sep</span>
+        <div class="mod-top" style="justify-content:flex-end">
+          <span class="badge">Awaiting</span>
         </div>
         <h3>Module 3: Confidence in Practice and Voice</h3>
         <p class="mod-desc">Your presence is found — a voice that carries, a confident backbend, and Half Primary in your hands.</p>
@@ -541,7 +529,6 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
               <div class="live-name">Live Practicum — Teaching Peers</div>
               <div class="live-meta">Ashtanga standing sequence · 1.5 hrs</div>
             </div>
-            <div class="live-when">Wed 10 Sep<em>16:00 WITA</em></div>
           </div>
           <div class="live qa">
             <span class="type"></span>
@@ -549,7 +536,6 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
               <div class="live-name">Q&amp;A + Sharing Circle</div>
               <div class="live-meta">Bring your questions from Module 3 · 2 hrs</div>
             </div>
-            <div class="live-when">Fri 12 Sep<em>17:00 WITA</em></div>
           </div>
         </div>
       </article>
@@ -586,6 +572,17 @@ h1{font-size:44px;font-weight:700;letter-spacing:-1.1px;line-height:1.06}
   });
   var current=document.querySelector('.mod.is-current');
   if(current&&strip){strip.scrollLeft=current.offsetLeft-strip.offsetLeft-8;}
+
+  // The Join button only shows while a live session is actually happening.
+  // Outside that window the row looks the same, just without the button.
+  var now=new Date();
+  document.querySelectorAll('.live[data-start]').forEach(function(el){
+    var join=el.querySelector('.join');
+    if(!join) return;
+    var start=new Date(el.dataset.start);
+    var end=new Date(start.getTime()+Number(el.dataset.duration||60)*60000);
+    if(!(now>=start&&now<=end)) join.remove();
+  });
 })();
 </script>
 
