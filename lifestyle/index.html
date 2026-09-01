@@ -123,52 +123,48 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .section-head h2{font-size:24px;font-weight:700;letter-spacing:-.4px}
 .section-intro{font-size:15px;line-height:1.65;color:var(--ink-soft);font-weight:500;max-width:760px;margin:10px 0 26px}
 
-/* ---------- accordion ---------- */
-.accordion{display:flex;flex-direction:column;gap:12px}
-.item{
-  background:var(--card);
+/* ---------- ritual list (plain b/w) ---------- */
+.ritual-list{
+  background:#fff;
   border:1px solid var(--line);
-  border-radius:var(--r-md);
-  overflow:hidden;
+  border-radius:var(--r-lg);
+  padding:4px 40px 8px;
 }
-.item[open]{border-color:var(--gold-deep);box-shadow:0 0 0 2px rgba(201,164,23,.16)}
-.item summary{
-  list-style:none;cursor:pointer;
-  display:flex;align-items:center;gap:16px;
-  padding:18px 20px;
+.ritual-item{padding:32px 0;border-bottom:1px solid #E4E4E4}
+.ritual-item:last-child{border-bottom:none}
+.ritual-head{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  cursor:pointer;
 }
-.item summary::-webkit-details-marker{display:none}
-.item .step{
-  width:34px;height:34px;border-radius:50%;background:var(--row);
-  display:grid;place-items:center;flex-shrink:0;font-weight:700;font-size:14px;color:var(--ink-soft);
+.ritual-head h3{font-size:23px;font-weight:700;letter-spacing:-.3px;color:var(--ink)}
+.ritual-head .x{
+  width:26px;height:26px;flex-shrink:0;color:var(--ink);
+  display:grid;place-items:center;transition:transform .18s ease;
 }
-.item[open] .step{background:var(--gold);color:#4A3B00}
-.item .heads{flex:1;min-width:0}
-.item .heads h3{font-size:17px;font-weight:700;letter-spacing:-.2px}
-.item .heads .sub{margin-top:3px;font-size:13px;color:var(--muted);font-weight:500}
-.item .chev{flex-shrink:0;color:var(--muted);transition:transform .2s}
-.item[open] .chev{transform:rotate(180deg)}
+.ritual-head .x svg{width:19px;height:19px}
+.ritual-rule{height:1px;background:#E4E4E4;margin-top:14px}
+.ritual-body{margin-top:20px}
+.ritual-body p{font-size:16px;line-height:1.75;color:var(--ink);font-weight:400;max-width:900px}
+.ritual-body p+p{margin-top:16px}
+.ritual-photo{
+  margin:20px 0;max-width:560px;border-radius:12px;overflow:hidden;
+  border:1px solid var(--line);
+}
+.ritual-photo .ph{
+  aspect-ratio:16/10;display:grid;place-items:center;gap:6px;
+  background:linear-gradient(160deg,#1B4534,#0E2C20);color:var(--white);
+}
+.ritual-photo .ph svg{width:30px;height:30px;opacity:.85}
+.ritual-photo .ph span{font-size:11.5px;font-weight:700;letter-spacing:.4px;opacity:.75}
+.ritual-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+  font-size:15px;font-weight:700;color:var(--ink);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.ritual-link svg{width:16px;height:16px;flex-shrink:0}
 
-.item .body{
-  padding:0 20px 22px 70px;
-  display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:start;
-}
-.item .body p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);font-weight:500}
-
-.video{
-  border-radius:var(--r-sm);overflow:hidden;
-  border:1px solid var(--line);background:var(--ink);
-}
-.video .thumb{
-  aspect-ratio:16/10;display:grid;place-items:center;
-  background:linear-gradient(160deg,#1B4534,#0E2C20);
-}
-.video .thumb svg{width:38px;height:38px;color:var(--white);opacity:.92}
-.video .watch{
-  display:flex;align-items:center;justify-content:center;gap:7px;
-  padding:9px 10px;font-size:12.5px;font-weight:700;color:var(--white);background:#0B241A;
-}
-.video .watch svg{width:14px;height:14px}
+.ritual-item.closed .ritual-rule,.ritual-item.closed .ritual-body{display:none}
+.ritual-item.closed .x{transform:rotate(45deg)}
 
 /* ---------- recipe / journal panels ---------- */
 .simple-card{
@@ -196,8 +192,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .wrap{padding:20px 18px 48px}
   .banner{padding:26px 22px 24px}
   .banner h1{font-size:27px}
-  .item .body{grid-template-columns:1fr;padding-left:20px}
-  .video{max-width:280px}
+  .ritual-list{padding:2px 20px 6px}
+  .ritual-head h3{font-size:19px}
 }
 </style>
 </head>
@@ -273,76 +269,100 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <div class="section-head"><span class="n">1</span><h2>Morning Rituals</h2></div>
     <p class="section-intro">A simple set of conscious habits to begin the day with intention. Right after waking: rinse the sinuses, scrape the tongue clean, and drink a glass of warm water. Then five minutes of awakening pranayama, and at least ten minutes of meditation. A small morning ritual that changes everything.</p>
 
-    <div class="accordion">
+    <div class="ritual-list">
 
-      <details class="item" open>
-        <summary>
-          <span class="step">1</span>
-          <div class="heads">
-            <h3>Morning Cleansing</h3>
-            <div class="sub">Nasal rinse · tongue scraping · a glass of warm water</div>
-          </div>
-          <span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </summary>
-        <div class="body">
-          <p>Right after you wake up, before anything else: gently rinse your sinuses, scrape the tongue clean, and drink a full glass of warm water. Three simple acts that clear the body before the mind has even fully woken up — the foundation everything else is built on.</p>
-          <div class="video">
-            <a class="thumb" href="#" aria-label="Watch Morning Cleansing video">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </a>
-            <a class="watch" href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-              Watch on Dropbox
-            </a>
-          </div>
+      <div class="ritual-item">
+        <div class="ritual-head">
+          <h3>1. Brahma Muhurta — The Quiet Hour Before Sunrise</h3>
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
         </div>
-      </details>
+        <div class="ritual-rule"></div>
+        <div class="ritual-body">
+          <p>In the Vedic tradition, the quiet window before sunrise — known as Brahma Muhurta — is often described as a time when the mind feels naturally clear and receptive. The world is still, distractions are few, and there's a subtle sense of beginning. Many people find that even a few moments of gentle awareness during this time can set a different tone for the rest of the day.</p>
+          <div class="ritual-photo">
+            <div class="ph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10.5" r="1.8"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg>
+              <span>PHOTO PLACEHOLDER</span>
+            </div>
+          </div>
+          <p>You don't need to overhaul your routine to explore it. Waking a little earlier, sitting in silence, journaling, or simply noticing the shift from night to light can be enough. It's less about discipline and more about curiosity — meeting the morning as it is, without pressure.</p>
+          <p>Whether you rise before dawn or simply carry its spirit into your day, this practice is an invitation to reconnect with a quieter rhythm — one that supports focus, steadiness, and a sense of ease.</p>
+        </div>
+      </div>
 
-      <details class="item">
-        <summary>
-          <span class="step">2</span>
-          <div class="heads">
-            <h3>Pranayama</h3>
-            <div class="sub">A short awakening breath practice · 5 min</div>
-          </div>
-          <span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </summary>
-        <div class="body">
-          <p>Five minutes of energizing breathwork to wake the body gently and bring clarity before the day begins. A new short practice is posted every day — just enough to shift your state, not enough to feel like a task.</p>
-          <div class="video">
-            <a class="thumb" href="#" aria-label="Watch today's Pranayama video">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </a>
-            <a class="watch" href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-              Watch on Dropbox
-            </a>
-          </div>
+      <div class="ritual-item">
+        <div class="ritual-head">
+          <h3>2. Jala Neti — Nasal Cleansing</h3>
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
         </div>
-      </details>
+        <div class="ritual-rule"></div>
+        <div class="ritual-body">
+          <p>Use a neti pot filled with warm, lightly salted water (about the salinity of tears). Standing over a sink, gently tilt your head to one side and pour the water through the upper nostril, allowing it to flow out of the other. Breathe through your mouth and move slowly, without force. Repeat on the other side, then softly dry the nasal passages.</p>
+        </div>
+      </div>
 
-      <details class="item">
-        <summary>
-          <span class="step">3</span>
-          <div class="heads">
-            <h3>Meditation</h3>
-            <div class="sub">A short daily sit · 5 min</div>
-          </div>
-          <span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </summary>
-        <div class="body">
-          <p>A brief guided sit to arrive fully in the present moment before stepping into the day. Five minutes here is the minimum, not the ceiling — however long you stay after is entirely yours.</p>
-          <div class="video">
-            <a class="thumb" href="#" aria-label="Watch today's Meditation video">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </a>
-            <a class="watch" href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-              Watch on Dropbox
-            </a>
-          </div>
+      <div class="ritual-item">
+        <div class="ritual-head">
+          <h3>3. Tongue Scraping</h3>
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
         </div>
-      </details>
+        <div class="ritual-rule"></div>
+        <div class="ritual-body">
+          <p>Use a tongue scraper and clean from back to front 5-7 times with light pressure. Rinse the scraper after each pass. This supports oral freshness and helps reduce morning coating before hydration and breakfast.</p>
+        </div>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-head">
+          <h3>4. Warm Water</h3>
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+        </div>
+        <div class="ritual-rule"></div>
+        <div class="ritual-body">
+          <p>Sip a glass of warm (not hot) water upon waking. Drink slowly, allowing the body to receive it without rush. You may choose to sit quietly as you drink, noticing the warmth and the gradual sense of hydration.</p>
+        </div>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-head">
+          <h3>5. Open the Room</h3>
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+        </div>
+        <div class="ritual-rule"></div>
+        <div class="ritual-body">
+          <p>Draw back the curtains and crack a window, letting the air of the new day move through the room you slept in. Let natural light reach your eyes before a screen does. A few slow breaths at the open window are enough to tell the body: the day has begun.</p>
+        </div>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-head">
+          <h3>6. Pranayama — 5 min</h3>
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+        </div>
+        <div class="ritual-rule"></div>
+        <div class="ritual-body">
+          <p>A short awakening breath practice, posted fresh every day. Sit comfortably, spine tall, and let five minutes of guided breathwork clear the last of the night's heaviness before it carries into your morning.</p>
+          <a class="ritual-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+            Watch on Dropbox
+          </a>
+        </div>
+      </div>
+
+      <div class="ritual-item">
+        <div class="ritual-head">
+          <h3>7. Meditation — 5 min</h3>
+          <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+        </div>
+        <div class="ritual-rule"></div>
+        <div class="ritual-body">
+          <p>A brief guided sit to arrive fully in the present moment before the day takes hold. Five minutes is the minimum, not the ceiling — stay longer if it calls you.</p>
+          <a class="ritual-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+            Watch on Dropbox
+          </a>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -378,6 +398,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 <script>
 (function(){
+  document.querySelectorAll('.ritual-head').forEach(function(h){
+    h.addEventListener('click',function(){
+      h.closest('.ritual-item').classList.toggle('closed');
+    });
+  });
   var tabs=document.querySelectorAll('.tab');
   var panels=document.querySelectorAll('.panel');
   function activate(name){
