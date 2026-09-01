@@ -9,21 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#12352A;
-  --ink-soft:#3D5A4B;
-  --muted:#7A8C7C;
-  --header:#0E2C20;
-  --banner:#12352A;
-  --banner-soft:#1B4534;
-  --sand:#EFE1C4;
-  --card:#F5EDD8;
-  --row:#EAE0C5;
-  --row-hover:#E2D6B4;
-  --line:#D8CBA9;
-  --gold:#F2D34E;
-  --gold-deep:#C9A417;
-  --sprout:#86D36A;
-  --white:#FFFDF7;
+  --ink:#111111;
+  --ink-soft:#404040;
+  --muted:#8A8A8A;
+  --header:#000000;
+  --banner:#000000;
+  --banner-soft:#1A1A1A;
+  --sand:#FFFFFF;
+  --card:#FFFFFF;
+  --row:#F2F2F2;
+  --row-hover:#E8E8E8;
+  --line:#E3E3E3;
+  --accent:#000000;
+  --white:#FFFFFF;
   --r-lg:20px;
   --r-md:12px;
   --r-sm:9px;
@@ -52,12 +50,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .logo svg{width:34px;height:34px}
 .logo-text{font-weight:700;font-size:19px;line-height:1.02;letter-spacing:-.2px}
 .nav-links{display:flex;gap:34px;margin:0 auto;font-weight:700;font-size:16px}
-.nav-links a{color:#CFE0D2;padding:5px 2px;transition:color .18s}
+.nav-links a{color:#B8B8B8;padding:5px 2px;transition:color .18s}
 .nav-links a:hover{color:var(--white)}
-.nav-links a.active{color:var(--sprout)}
-.nav-right{display:flex;align-items:center;gap:16px;color:#CFE0D2;flex-shrink:0}
+.nav-links a.active{color:var(--white);text-decoration:underline;text-underline-offset:6px}
+.nav-right{display:flex;align-items:center;gap:16px;color:#B8B8B8;flex-shrink:0}
 .user{display:flex;align-items:center;gap:10px;font-weight:500;font-size:15px}
-.avatar{width:29px;height:29px;border-radius:50%;background:#2A4B3B;display:grid;place-items:center}
+.avatar{width:29px;height:29px;border-radius:50%;background:#2A2A2A;display:grid;place-items:center}
 
 /* ---------- shell ---------- */
 .wrap{max-width:1180px;margin:0 auto;padding:26px 34px 60px}
@@ -73,25 +71,25 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   padding:34px 36px 30px;
   margin-bottom:16px;
 }
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#9FD3AE;margin-bottom:10px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#B8B8B8;margin-bottom:10px}
 .banner h1{font-size:34px;font-weight:700;letter-spacing:-.7px;line-height:1.08;margin-bottom:14px}
-.banner p{font-size:15.5px;line-height:1.62;color:#D8E6DA;max-width:760px;font-weight:500}
-.banner-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14)}
+.banner p{font-size:15.5px;line-height:1.62;color:#D8D8D8;max-width:760px;font-weight:500}
+.banner-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16)}
 .banner-meta .stat{display:flex;flex-direction:column;gap:3px}
 .banner-meta .stat b{font-size:19px;font-weight:700}
-.banner-meta .stat i{font-style:normal;font-size:12px;color:#9FBFA9;font-weight:500}
+.banner-meta .stat i{font-style:normal;font-size:12px;color:#AAAAAA;font-weight:500}
 
 /* ---------- spec note ---------- */
 .spec-note{
   display:flex;gap:11px;align-items:flex-start;
-  border:1px dashed var(--gold-deep);
-  background:#F8F0D4;
+  border:1px dashed #B0B0B0;
+  background:#F5F5F5;
   border-radius:var(--r-md);
   padding:13px 16px;
   margin-bottom:32px;
-  font-size:13px;line-height:1.55;color:#5C4A0E;font-weight:500;
+  font-size:13px;line-height:1.55;color:#333333;font-weight:500;
 }
-.spec-note svg{flex-shrink:0;margin-top:1px;color:var(--gold-deep)}
+.spec-note svg{flex-shrink:0;margin-top:1px;color:#333333}
 .spec-note b{font-weight:700}
 
 /* ---------- tabs ---------- */
@@ -109,7 +107,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 }
 .tab:hover{background:var(--row-hover)}
 .tab.active{background:var(--ink);border-color:var(--ink);color:var(--white)}
-.tab.active .num{background:var(--gold);color:#4A3B00}
+.tab.active .num{background:var(--white);color:var(--ink)}
 
 /* ---------- panels ---------- */
 .panel{display:none}
@@ -117,58 +115,70 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 .section-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
 .section-head .n{
-  width:32px;height:32px;border-radius:9px;background:var(--ink);color:var(--gold);
+  width:32px;height:32px;border-radius:9px;background:var(--ink);color:var(--white);
   display:grid;place-items:center;font-weight:700;font-size:15px;flex-shrink:0;
 }
 .section-head h2{font-size:24px;font-weight:700;letter-spacing:-.4px}
 .section-intro{font-size:15px;line-height:1.65;color:var(--ink-soft);font-weight:500;max-width:760px;margin:10px 0 26px}
 
-/* ---------- accordion ---------- */
-.accordion{display:flex;flex-direction:column;gap:12px}
-.item{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:var(--r-md);
-  overflow:hidden;
-}
-.item[open]{border-color:var(--gold-deep);box-shadow:0 0 0 2px rgba(201,164,23,.16)}
+/* ---------- accordion (matches production activity page) ---------- */
+.accordion{display:flex;flex-direction:column}
+.item{border-bottom:1px solid var(--line)}
+.item:first-child{border-top:1px solid var(--line)}
+
 .item summary{
   list-style:none;cursor:pointer;
-  display:flex;align-items:center;gap:16px;
-  padding:18px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 2px;
 }
 .item summary::-webkit-details-marker{display:none}
-.item .step{
-  width:34px;height:34px;border-radius:50%;background:var(--row);
-  display:grid;place-items:center;flex-shrink:0;font-weight:700;font-size:14px;color:var(--ink-soft);
+.item .heads h3{font-size:19px;font-weight:700;letter-spacing:-.2px;color:var(--ink)}
+.item .toggle{
+  width:22px;height:22px;flex-shrink:0;color:var(--ink);
+  display:grid;place-items:center;transition:transform .2s ease;
 }
-.item[open] .step{background:var(--gold);color:#4A3B00}
-.item .heads{flex:1;min-width:0}
-.item .heads h3{font-size:17px;font-weight:700;letter-spacing:-.2px}
-.item .heads .sub{margin-top:3px;font-size:13px;color:var(--muted);font-weight:500}
-.item .chev{flex-shrink:0;color:var(--muted);transition:transform .2s}
-.item[open] .chev{transform:rotate(180deg)}
+.item[open] .toggle{transform:rotate(45deg)}
 
-.item .body{
-  padding:0 20px 22px 70px;
-  display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:start;
+.item .body{padding:0 2px 26px}
+.item .body p{font-size:15px;line-height:1.65;color:var(--ink);max-width:680px;font-weight:400}
+.item .body p+p{margin-top:12px}
+
+.sub-practice{margin-top:22px}
+.sub-practice .sub-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sub-practice .sub-label .tag{
+  font-size:11px;font-weight:600;color:var(--muted);background:var(--row);
+  padding:2px 9px;border-radius:99px;
 }
-.item .body p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);font-weight:500}
 
 .video{
+  margin-top:10px;
+  max-width:360px;
   border-radius:var(--r-sm);overflow:hidden;
   border:1px solid var(--line);background:var(--ink);
 }
 .video .thumb{
   aspect-ratio:16/10;display:grid;place-items:center;
-  background:linear-gradient(160deg,#1B4534,#0E2C20);
+  background:linear-gradient(160deg,#2A2A2A,#000000);
 }
-.video .thumb svg{width:38px;height:38px;color:var(--white);opacity:.92}
+.video .thumb svg{width:34px;height:34px;color:var(--white);opacity:.92}
 .video .watch{
   display:flex;align-items:center;justify-content:center;gap:7px;
-  padding:9px 10px;font-size:12.5px;font-weight:700;color:var(--white);background:#0B241A;
+  padding:9px 10px;font-size:12.5px;font-weight:700;color:var(--white);background:#000000;
 }
 .video .watch svg{width:14px;height:14px}
+
+.group{margin-bottom:38px}
+.group:last-child{margin-bottom:0}
+.group-head h3{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.3px}
+.group-head p{margin-top:6px;font-size:14px;color:var(--muted);font-weight:500;max-width:640px}
+.group .accordion{margin-top:14px}
+
+.item-meta{display:flex;gap:8px;margin-top:7px}
+.item-meta .tag{font-size:11.5px;padding:3px 10px;background:var(--row);color:var(--ink-soft)}
+.item-meta .tag.pts{background:var(--ink);color:var(--white)}
+
+.benefit{margin-top:14px;font-size:14px;line-height:1.6;color:var(--ink-soft);font-weight:500}
+.benefit b{color:var(--ink);font-weight:700}
 
 /* ---------- recipe / journal panels ---------- */
 .simple-card{
@@ -180,7 +190,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .daily-badge{
   display:inline-flex;align-items:center;gap:7px;
   font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
-  color:var(--gold-deep);background:#F8F0D4;border:1px solid var(--gold-deep);
+  color:var(--ink);background:#F0F0F0;border:1px solid #B0B0B0;
   padding:5px 11px;border-radius:99px;margin-bottom:14px;
 }
 
@@ -192,11 +202,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   background:var(--row);padding:12px 14px;font-size:13.5px;color:var(--muted);font-weight:500;
 }
 
+/* ---- top meta tags (mirrors the standalone activity page) ---- */
+.tags{display:flex;gap:10px;margin-bottom:14px}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--row);color:var(--ink-soft);
+  font-size:13.5px;font-weight:500;
+  padding:6px 14px;border-radius:99px;
+}
+
 @media (max-width:760px){
   .wrap{padding:20px 18px 48px}
   .banner{padding:26px 22px 24px}
   .banner h1{font-size:27px}
-  .item .body{grid-template-columns:1fr;padding-left:20px}
   .video{max-width:280px}
 }
 </style>
@@ -229,7 +247,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <div class="user">
       <span>nishchuk</span>
       <div class="avatar">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#CFE0D2" stroke-width="2.2" stroke-linecap="round">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B8B8B8" stroke-width="2.2" stroke-linecap="round">
           <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
         </svg>
       </div>
@@ -270,81 +288,104 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
   <!-- ============ MORNING RITUALS ============ -->
   <section class="panel active" id="morning">
-    <div class="section-head"><span class="n">1</span><h2>Morning Rituals</h2></div>
-    <p class="section-intro">A simple set of conscious habits to begin the day with intention. Right after waking: rinse the sinuses, scrape the tongue clean, and drink a glass of warm water. Then five minutes of awakening pranayama, and at least ten minutes of meditation. A small morning ritual that changes everything.</p>
 
-    <div class="accordion">
-
-      <details class="item" open>
-        <summary>
-          <span class="step">1</span>
-          <div class="heads">
-            <h3>Morning Cleansing</h3>
-            <div class="sub">Nasal rinse · tongue scraping · a glass of warm water</div>
-          </div>
-          <span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </summary>
-        <div class="body">
-          <p>Right after you wake up, before anything else: gently rinse your sinuses, scrape the tongue clean, and drink a full glass of warm water. Three simple acts that clear the body before the mind has even fully woken up — the foundation everything else is built on.</p>
-          <div class="video">
-            <a class="thumb" href="#" aria-label="Watch Morning Cleansing video">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </a>
-            <a class="watch" href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-              Watch on Dropbox
-            </a>
-          </div>
-        </div>
-      </details>
-
-      <details class="item">
-        <summary>
-          <span class="step">2</span>
-          <div class="heads">
-            <h3>Pranayama</h3>
-            <div class="sub">A short awakening breath practice · 5 min</div>
-          </div>
-          <span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </summary>
-        <div class="body">
-          <p>Five minutes of energizing breathwork to wake the body gently and bring clarity before the day begins. A new short practice is posted every day — just enough to shift your state, not enough to feel like a task.</p>
-          <div class="video">
-            <a class="thumb" href="#" aria-label="Watch today's Pranayama video">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </a>
-            <a class="watch" href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-              Watch on Dropbox
-            </a>
-          </div>
-        </div>
-      </details>
-
-      <details class="item">
-        <summary>
-          <span class="step">3</span>
-          <div class="heads">
-            <h3>Meditation</h3>
-            <div class="sub">A short daily sit · 5 min</div>
-          </div>
-          <span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </summary>
-        <div class="body">
-          <p>A brief guided sit to arrive fully in the present moment before stepping into the day. Five minutes here is the minimum, not the ceiling — however long you stay after is entirely yours.</p>
-          <div class="video">
-            <a class="thumb" href="#" aria-label="Watch today's Meditation video">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </a>
-            <a class="watch" href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-              Watch on Dropbox
-            </a>
-          </div>
-        </div>
-      </details>
-
+    <div class="tags">
+      <span class="tag">Daily</span>
+      <span class="tag">Lifestyle</span>
     </div>
+
+    <div class="section-head" style="margin-bottom:14px"><h2 style="font-size:30px">Shanti Lifestyle</h2></div>
+    <p class="section-intro" style="margin-top:0">A calm morning structure drawn from traditional yogic practice — not required for your certificate, but the habit that actually changes things. Clearing the mind after waking matters as much as brushing your teeth; pranayama and meditation are the simplest tools for it. Begin with what fits your present rhythm, then let consistency do the quiet work.</p>
+
+    <!-- ---- Shatkriya ---- -->
+    <div class="group">
+      <div class="group-head">
+        <h3>Shatkriya</h3>
+        <p>Traditional cleansing before practice — one short sequence, one video.</p>
+      </div>
+
+      <div class="accordion">
+        <details class="item">
+          <summary>
+            <div class="heads">
+              <h3>Morning Cleansing</h3>
+              <div class="item-meta"><span class="tag">5 min</span><span class="tag pts">+30 pts</span></div>
+            </div>
+            <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">
+            <p>Scrape the tongue gently from back to front, five to seven times, rinsing after each pass. Follow with Jala Neti — a light saline rinse through each nostril — to clear the airway before pranayama. Finish with a full glass of warm water on an empty stomach.</p>
+            <div class="benefit"><b>Benefit:</b> clears the body's surfaces before the breath work begins — the traditional preparation for pranayama.</div>
+            <div class="video">
+              <a class="thumb" href="#" aria-label="Watch the Morning Cleansing video">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </a>
+              <a class="watch" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+                Watch on Dropbox
+              </a>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- ---- Morning Rituals (breath + stillness) ---- -->
+    <div class="group">
+      <div class="group-head">
+        <h3>Morning Rituals</h3>
+        <p>Ten minutes of breath, followed by ten minutes of stillness.</p>
+      </div>
+
+      <div class="accordion">
+        <details class="item">
+          <summary>
+            <div class="heads">
+              <h3>Pranayama</h3>
+              <div class="item-meta"><span class="tag">10 min</span><span class="tag pts">+50 pts</span></div>
+            </div>
+            <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">
+            <p>Follow the assigned breathing practice at a comfortable pace, allowing the body and attention to become more awake.</p>
+            <div class="benefit"><b>Benefit:</b> establishes a measured transition from sleep into study or daily activity.</div>
+            <div class="video">
+              <a class="thumb" href="#" aria-label="Watch today's Pranayama video">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </a>
+              <a class="watch" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+                Watch on Dropbox
+              </a>
+            </div>
+          </div>
+        </details>
+
+        <details class="item">
+          <summary>
+            <div class="heads">
+              <h3>Meditation</h3>
+              <div class="item-meta"><span class="tag">10 min</span><span class="tag pts">+50 pts</span></div>
+            </div>
+            <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">
+            <p>Sit quietly for the assigned length of time, letting attention settle on the breath. Nothing to perfect — only a few minutes of stillness before the day begins.</p>
+            <div class="benefit"><b>Benefit:</b> builds the daily habit of returning attention inward — the same skill you'll teach.</div>
+            <div class="video">
+              <a class="thumb" href="#" aria-label="Watch today's Meditation video">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </a>
+              <a class="watch" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+                Watch on Dropbox
+              </a>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
   </section>
 
   <!-- ============ RECIPE OF THE DAY ============ -->
