@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhakti Lifestyle Activities — Shanti Island</title>
+<title>Shanti Lifestyle — Shanti Island</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
@@ -13,8 +13,6 @@
   --ink-soft:#404040;
   --muted:#8A8A8A;
   --header:#000000;
-  --banner:#000000;
-  --banner-soft:#1A1A1A;
   --sand:#FFFFFF;
   --card:#FFFFFF;
   --row:#F2F2F2;
@@ -59,65 +57,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* ---------- shell ---------- */
 .wrap{max-width:1180px;margin:0 auto;padding:26px 34px 60px}
-.crumb{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:var(--ink-soft);margin-bottom:18px}
-.crumb svg{width:15px;height:15px;flex-shrink:0}
-.crumb span{color:var(--muted);font-weight:500}
 
-/* ---------- banner ---------- */
-.banner{
-  background:linear-gradient(160deg,var(--banner) 0%,var(--banner-soft) 100%);
-  color:var(--white);
-  border-radius:var(--r-lg);
-  padding:34px 36px 30px;
-  margin-bottom:16px;
-}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#B8B8B8;margin-bottom:10px}
-.banner h1{font-size:34px;font-weight:700;letter-spacing:-.7px;line-height:1.08;margin-bottom:14px}
-.banner p{font-size:15.5px;line-height:1.62;color:#D8D8D8;max-width:760px;font-weight:500}
-.banner-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16)}
-.banner-meta .stat{display:flex;flex-direction:column;gap:3px}
-.banner-meta .stat b{font-size:19px;font-weight:700}
-.banner-meta .stat i{font-style:normal;font-size:12px;color:#AAAAAA;font-weight:500}
-
-/* ---------- spec note ---------- */
-.spec-note{
-  display:flex;gap:11px;align-items:flex-start;
-  border:1px dashed #B0B0B0;
-  background:#F5F5F5;
-  border-radius:var(--r-md);
-  padding:13px 16px;
-  margin-bottom:32px;
-  font-size:13px;line-height:1.55;color:#333333;font-weight:500;
-}
-.spec-note svg{flex-shrink:0;margin-top:1px;color:#333333}
-.spec-note b{font-weight:700}
-
-/* ---------- tabs ---------- */
-.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px}
-.tab{
-  padding:11px 20px;border-radius:99px;
-  background:var(--card);border:1px solid var(--line);
-  font-size:14.5px;font-weight:700;color:var(--ink-soft);
-  display:flex;align-items:center;gap:9px;
-  transition:background .16s,border-color .16s,color .16s;
-}
-.tab .num{
-  width:20px;height:20px;border-radius:50%;background:var(--row);
-  display:grid;place-items:center;font-size:11.5px;color:var(--muted);flex-shrink:0;
-}
-.tab:hover{background:var(--row-hover)}
-.tab.active{background:var(--ink);border-color:var(--ink);color:var(--white)}
-.tab.active .num{background:var(--white);color:var(--ink)}
-
-/* ---------- panels ---------- */
-.panel{display:none}
-.panel.active{display:block}
-
-.section-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-.section-head .n{
-  width:32px;height:32px;border-radius:9px;background:var(--ink);color:var(--white);
-  display:grid;place-items:center;font-weight:700;font-size:15px;flex-shrink:0;
-}
+.section-head{margin-bottom:14px}
 .section-head h2{font-size:24px;font-weight:700;letter-spacing:-.4px}
 .section-intro{font-size:15px;line-height:1.65;color:var(--ink-soft);font-weight:500;max-width:760px;margin:10px 0 26px}
 
@@ -143,13 +84,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .item .body p{font-size:15px;line-height:1.65;color:var(--ink);max-width:680px;font-weight:400}
 .item .body p+p{margin-top:12px}
 
-.sub-practice{margin-top:22px}
-.sub-practice .sub-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.sub-practice .sub-label .tag{
-  font-size:11px;font-weight:600;color:var(--muted);background:var(--row);
-  padding:2px 9px;border-radius:99px;
-}
-
 .video{
   margin-top:10px;
   max-width:360px;
@@ -174,47 +108,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .group .accordion{margin-top:14px}
 
 .item-meta{display:flex;gap:8px;margin-top:7px}
-.item-meta .tag{font-size:11.5px;padding:3px 10px;background:var(--row);color:var(--ink-soft)}
-.item-meta .tag.pts{background:var(--ink);color:var(--white)}
-
-.benefit{margin-top:14px;font-size:14px;line-height:1.6;color:var(--ink-soft);font-weight:500}
-.benefit b{color:var(--ink);font-weight:700}
-
-/* ---------- recipe / journal panels ---------- */
-.simple-card{
-  background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);
-  padding:24px 24px 22px;
-}
-.simple-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
-.simple-card p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);font-weight:500}
-.daily-badge{
-  display:inline-flex;align-items:center;gap:7px;
-  font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
-  color:var(--ink);background:#F0F0F0;border:1px solid #B0B0B0;
-  padding:5px 11px;border-radius:99px;margin-bottom:14px;
-}
-
-.journal-mock{margin-top:18px}
-.journal-mock .field{margin-bottom:14px}
-.journal-mock label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);margin-bottom:6px}
-.journal-mock .box{
-  border:1px solid var(--line);border-radius:var(--r-sm);
-  background:var(--row);padding:12px 14px;font-size:13.5px;color:var(--muted);font-weight:500;
-}
-
-/* ---- top meta tags (mirrors the standalone activity page) ---- */
-.tags{display:flex;gap:10px;margin-bottom:14px}
 .tag{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--row);color:var(--ink-soft);
   font-size:13.5px;font-weight:500;
   padding:6px 14px;border-radius:99px;
 }
+.item-meta .tag{font-size:11.5px;padding:3px 10px;background:var(--row);color:var(--ink-soft)}
+.item-meta .tag.pts{background:var(--ink);color:var(--white)}
+
+.benefit{margin-top:14px;font-size:14px;line-height:1.6;color:var(--ink-soft);font-weight:500}
+.benefit b{color:var(--ink);font-weight:700}
 
 @media (max-width:760px){
   .wrap{padding:20px 18px 48px}
-  .banner{padding:26px 22px 24px}
-  .banner h1{font-size:27px}
   .video{max-width:280px}
 }
 </style>
@@ -257,186 +164,97 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 <main class="wrap">
 
-  <div class="crumb">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg>
-    <a href="../index.html">Dashboard</a><span>· Lifestyle Activities</span>
+  <div class="section-head" style="margin-bottom:14px"><h2 style="font-size:30px">Shanti Lifestyle</h2></div>
+  <p class="section-intro" style="margin-top:0">A calm morning structure drawn from traditional yogic practice — not required for your certificate, but the habit that actually changes things. Clearing the mind after waking matters as much as brushing your teeth; pranayama and meditation are the simplest tools for it. Begin with what fits your present rhythm, then let consistency do the quiet work.</p>
+
+  <!-- ---- Shatkriya ---- -->
+  <div class="group">
+    <div class="group-head">
+      <p>Traditional cleansing before practice — one short sequence, one video.</p>
+    </div>
+
+    <div class="accordion">
+      <details class="item">
+        <summary>
+          <div class="heads">
+            <h3>Morning Cleansing</h3>
+            <div class="item-meta"><span class="tag">5 min</span><span class="tag pts">+30 pts</span></div>
+          </div>
+          <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </summary>
+        <div class="body">
+          <p>Scrape the tongue gently from back to front, five to seven times, rinsing after each pass. Follow with Jala Neti — a light saline rinse through each nostril — to clear the airway before pranayama. Finish with a full glass of warm water on an empty stomach.</p>
+          <div class="benefit"><b>Benefit:</b> clears the body's surfaces before the breath work begins — the traditional preparation for pranayama.</div>
+          <div class="video">
+            <a class="thumb" href="#" aria-label="Watch the Morning Cleansing video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+            <a class="watch" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+              Watch on Dropbox
+            </a>
+          </div>
+        </div>
+      </details>
+    </div>
   </div>
 
-  <section class="banner">
-    <div class="eyebrow">Everyday practice</div>
-    <h1>Bhakti Lifestyle Activities</h1>
-    <p>Between your study days, the course never stops. On the days you're not in class, gentle daily practices are waiting for you — not to load you down, but to hold you: to open the day with intention, to move through it with awareness, and to close it with reflection.</p>
-    <p style="margin-top:12px">This is bhakti in everyday life — not as theory, but as the very fabric of a yogi's life beyond the mat. These small rituals build a joyful discipline: not something you force yourself into, but something you keep returning to with pleasure.</p>
-    <div class="banner-meta">
-      <div class="stat"><b>9</b><i>modules</i></div>
-      <div class="stat"><b>~8</b><i>practice days per module</i></div>
-      <div class="stat"><b>~72</b><i>days of practice total*</i></div>
-      <div class="stat"><b>3</b><i>daily practices</i></div>
+  <!-- ---- Morning Rituals (breath + stillness) ---- -->
+  <div class="group">
+    <div class="group-head">
+      <p>Ten minutes of breath, followed by ten minutes of stillness.</p>
     </div>
-  </section>
 
-  <div class="spec-note">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v5" stroke-linecap="round"/><circle cx="12" cy="16.2" r="1" fill="currentColor" stroke="none"/></svg>
-    <div><b>*Draft figures.</b> The 72-day / 9×8 count still needs to be confirmed with the team, along with whether these daily practices are also included during Intro Week. Placeholder until signed off.</div>
+    <div class="accordion">
+      <details class="item">
+        <summary>
+          <div class="heads">
+            <h3>Pranayama</h3>
+            <div class="item-meta"><span class="tag">10 min</span><span class="tag pts">+50 pts</span></div>
+          </div>
+          <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </summary>
+        <div class="body">
+          <p>Follow the assigned breathing practice at a comfortable pace, allowing the body and attention to become more awake.</p>
+          <div class="benefit"><b>Benefit:</b> establishes a measured transition from sleep into study or daily activity.</div>
+          <div class="video">
+            <a class="thumb" href="#" aria-label="Watch today's Pranayama video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+            <a class="watch" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+              Watch on Dropbox
+            </a>
+          </div>
+        </div>
+      </details>
+
+      <details class="item">
+        <summary>
+          <div class="heads">
+            <h3>Meditation</h3>
+            <div class="item-meta"><span class="tag">10 min</span><span class="tag pts">+50 pts</span></div>
+          </div>
+          <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </summary>
+        <div class="body">
+          <p>Sit quietly for the assigned length of time, letting attention settle on the breath. Nothing to perfect — only a few minutes of stillness before the day begins.</p>
+          <div class="benefit"><b>Benefit:</b> builds the daily habit of returning attention inward — the same skill you'll teach.</div>
+          <div class="video">
+            <a class="thumb" href="#" aria-label="Watch today's Meditation video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+            <a class="watch" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
+              Watch on Dropbox
+            </a>
+          </div>
+        </div>
+      </details>
+    </div>
   </div>
-
-  <div class="tabs">
-    <button class="tab active" data-panel="morning"><span class="num">1</span>Morning Rituals</button>
-    <button class="tab" data-panel="recipe"><span class="num">2</span>Recipe of the Day</button>
-    <button class="tab" data-panel="journal"><span class="num">3</span>Journal</button>
-  </div>
-
-  <!-- ============ MORNING RITUALS ============ -->
-  <section class="panel active" id="morning">
-
-    <div class="tags">
-      <span class="tag">Daily</span>
-      <span class="tag">Lifestyle</span>
-    </div>
-
-    <div class="section-head" style="margin-bottom:14px"><h2 style="font-size:30px">Shanti Lifestyle</h2></div>
-    <p class="section-intro" style="margin-top:0">A calm morning structure drawn from traditional yogic practice — not required for your certificate, but the habit that actually changes things. Clearing the mind after waking matters as much as brushing your teeth; pranayama and meditation are the simplest tools for it. Begin with what fits your present rhythm, then let consistency do the quiet work.</p>
-
-    <!-- ---- Shatkriya ---- -->
-    <div class="group">
-      <div class="group-head">
-        <h3>Shatkriya</h3>
-        <p>Traditional cleansing before practice — one short sequence, one video.</p>
-      </div>
-
-      <div class="accordion">
-        <details class="item">
-          <summary>
-            <div class="heads">
-              <h3>Morning Cleansing</h3>
-              <div class="item-meta"><span class="tag">5 min</span><span class="tag pts">+30 pts</span></div>
-            </div>
-            <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-          </summary>
-          <div class="body">
-            <p>Scrape the tongue gently from back to front, five to seven times, rinsing after each pass. Follow with Jala Neti — a light saline rinse through each nostril — to clear the airway before pranayama. Finish with a full glass of warm water on an empty stomach.</p>
-            <div class="benefit"><b>Benefit:</b> clears the body's surfaces before the breath work begins — the traditional preparation for pranayama.</div>
-            <div class="video">
-              <a class="thumb" href="#" aria-label="Watch the Morning Cleansing video">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              </a>
-              <a class="watch" href="#">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-                Watch on Dropbox
-              </a>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-
-    <!-- ---- Morning Rituals (breath + stillness) ---- -->
-    <div class="group">
-      <div class="group-head">
-        <h3>Morning Rituals</h3>
-        <p>Ten minutes of breath, followed by ten minutes of stillness.</p>
-      </div>
-
-      <div class="accordion">
-        <details class="item">
-          <summary>
-            <div class="heads">
-              <h3>Pranayama</h3>
-              <div class="item-meta"><span class="tag">10 min</span><span class="tag pts">+50 pts</span></div>
-            </div>
-            <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-          </summary>
-          <div class="body">
-            <p>Follow the assigned breathing practice at a comfortable pace, allowing the body and attention to become more awake.</p>
-            <div class="benefit"><b>Benefit:</b> establishes a measured transition from sleep into study or daily activity.</div>
-            <div class="video">
-              <a class="thumb" href="#" aria-label="Watch today's Pranayama video">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              </a>
-              <a class="watch" href="#">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-                Watch on Dropbox
-              </a>
-            </div>
-          </div>
-        </details>
-
-        <details class="item">
-          <summary>
-            <div class="heads">
-              <h3>Meditation</h3>
-              <div class="item-meta"><span class="tag">10 min</span><span class="tag pts">+50 pts</span></div>
-            </div>
-            <span class="toggle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-          </summary>
-          <div class="body">
-            <p>Sit quietly for the assigned length of time, letting attention settle on the breath. Nothing to perfect — only a few minutes of stillness before the day begins.</p>
-            <div class="benefit"><b>Benefit:</b> builds the daily habit of returning attention inward — the same skill you'll teach.</div>
-            <div class="video">
-              <a class="thumb" href="#" aria-label="Watch today's Meditation video">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              </a>
-              <a class="watch" href="#">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5z"/></svg>
-                Watch on Dropbox
-              </a>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ============ RECIPE OF THE DAY ============ -->
-  <section class="panel" id="recipe">
-    <div class="section-head"><span class="n">2</span><h2>Recipe of the Day</h2></div>
-    <p class="section-intro">Every day we share a recipe that nourishes your yogic lifestyle from within. This is more than food: cooking with love and attention is one of the most accessible forms of bhakti — a daily act of devotion, care and presence. Let the kitchen become a place of meditation.</p>
-
-    <div class="simple-card">
-      <span class="daily-badge">New recipe · posted daily</span>
-      <h3>Today's recipe</h3>
-      <p>Recipe content is added fresh each day — ingredients, method, and a short note on the intention behind the dish. Placeholder until the recipe feed is connected.</p>
-    </div>
-  </section>
-
-  <!-- ============ JOURNAL ============ -->
-  <section class="panel" id="journal">
-    <div class="section-head"><span class="n">3</span><h2>Journal</h2></div>
-    <p class="section-intro">At the end of the day, take a few minutes to write down what you did, what you learned, what you noticed — even the smallest detail matters. Capture your key insights and moments of clarity. Over time, this practice becomes a living record of your transformation, and a powerful tool for self-observation, responsibility and growth.</p>
-
-    <div class="simple-card">
-      <h3>Today's entry</h3>
-      <div class="journal-mock">
-        <div class="field"><label>What did I do today?</label><div class="box">Write freely — a few sentences are enough.</div></div>
-        <div class="field"><label>What did I notice or learn?</label><div class="box">Even the smallest detail matters.</div></div>
-        <div class="field"><label>A moment of clarity today</label><div class="box">One thing worth remembering.</div></div>
-      </div>
-    </div>
-  </section>
 
 </main>
-
-<script>
-(function(){
-  var tabs=document.querySelectorAll('.tab');
-  var panels=document.querySelectorAll('.panel');
-  function activate(name){
-    tabs.forEach(function(t){t.classList.toggle('active',t.dataset.panel===name)});
-    panels.forEach(function(p){p.classList.toggle('active',p.id===name)});
-  }
-  tabs.forEach(function(t){
-    t.addEventListener('click',function(){
-      activate(t.dataset.panel);
-      history.replaceState(null,'','?activity='+(t.dataset.panel==='morning'?'morning_rituals':t.dataset.panel==='recipe'?'recipe_of_the_day':'journal'));
-    });
-  });
-  var params=new URLSearchParams(location.search);
-  var activity=params.get('activity');
-  var map={morning_rituals:'morning',recipe_of_the_day:'recipe',journal:'journal'};
-  if(activity&&map[activity]) activate(map[activity]);
-})();
-</script>
 
 </body>
 </html>
